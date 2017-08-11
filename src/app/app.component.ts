@@ -8,4 +8,5 @@ import { EntryConsoleComponent } from './entry-console/entry-console.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
 }
