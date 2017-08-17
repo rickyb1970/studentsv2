@@ -1,4 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!-- data entry console -->
-<controlpanel></controlpanel><!-- fetch the data to be placed into the collection -->
-<app-printing></app-printing>
+<entry-console [studentRecord]="studentRecord"></entry-console>
+<app-control-panel (addClicked)="trapthis()"></app-control-panel><!-- fetch the data to be placed into the collection -->
+<app-printing (printClicked)="listStudents()"></app-printing>

@@ -1,74 +1,39 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'controlpanel',
+  selector: 'app-control-panel',
   templateUrl: './controlpanel.component.html',
   styleUrls: ['./controlpanel.component.css'],
 })
 
-export class ControlpanelComponent implements OnInit {  
-  
-  studentCollection: Array<object> = [];
-  studentInfo: {studNo: number, studFirstName: string, studLastName: string, studProgram: string, studYear: number};
+export class ControlpanelComponent implements OnInit {
 
+  @Output() AddClicked = new EventEmitter<any>();
+  @Output() PrintClicked = new EventEmitter<any>();
+
+  flag;
   messages = '';
 
   resetFlag;
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {
-  
+
   }
 
-  checkPattern(value: any, pattern: RegExp): boolean {
-      if (pattern.test(value))
-         return true;
-      else
-         return false;
-  } 
-
-  addStudentEntry(): boolean {
-      console.log(this.studentInfo);
-
-      //this.studentEntry.printing;
-      const stringPattern = /^[A-z\s]+$/;
-      const studNumberPattern = /^[0-9]+$/;
-      const studYearPattern = /^[1-5]+$/;
-
-      if (this.checkPattern(this.studentInfo.studNo,studNumberPattern) && 
-          this.checkPattern(this.studentInfo.studFirstName,stringPattern) && 
-          this.checkPattern(this.studentInfo.studLastName,stringPattern) && 
-          this.checkPattern(this.studentInfo.studProgram,stringPattern) && 
-          this.checkPattern(this.studentInfo.studYear,studYearPattern)){
-
-        this.studentCollection.push(this.studentInfo);
-
-          // console.log(this.studentRecord);
-        console.log(this.studentCollection);
-        this.messages = null;
-
-      } else {
-
-        this.messages = 'Errors have been encountered and therefore cannot continue to process requested operation.';
-        return false;
-
-      }
-
-      return true;
+  addOption(data) {
+    //console.log('add option clicked');
+    this.flag = 'add';
+    this.AddClicked.emit();
+    console.log(this.AddClicked.emit());
   }
 
-  getResetFlagState() {
-    //  this.resetFlag = this.studentRecord.resetFlag;
-
-    //  return {resetValue: this.resetFlag};
+  listOption() {
+    console.log('list option clicked');
+    //this.PrintClicked.emit(data);
   }
 
-
-
-  listStudents(): void {
-          console.log('Listing');
-  }
 
 }

@@ -1,11 +1,8 @@
-<div>
-<entry-console [studentRecord] = "studentInfo"></entry-console>
-</div>
 <div id="options">
-   <button id="addStudents" (click)="addStudentEntry()">
+   <button id="addStudents" (click)="addOption($event)">
        Add Student Entry 
    </button>
-   <button id="listStudents" (click)="listStudents()">
+   <button id="listStudents" (click)="listOption()">
        List Students
    </button>   
 </div>
