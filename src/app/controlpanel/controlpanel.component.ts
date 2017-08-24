@@ -1,15 +1,15 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-control-panel',
+  selector: 'controlpanel',
   templateUrl: './controlpanel.component.html',
   styleUrls: ['./controlpanel.component.css'],
 })
 
 export class ControlpanelComponent implements OnInit {
 
-  @Output() AddClicked = new EventEmitter<any>();
-  @Output() PrintClicked = new EventEmitter<any>();
+  @Output() add = new EventEmitter<{mode: string}>();
+  @Output() print = new EventEmitter<{mode: string}>();
 
   flag;
   messages = '';
@@ -23,15 +23,16 @@ export class ControlpanelComponent implements OnInit {
 
   }
 
-  addOption(data) {
-    //console.log('add option clicked');
+  addOption() {
     this.flag = 'add';
-    this.AddClicked.emit();
-    console.log(this.AddClicked.emit());
+    this.add.emit({mode: this.flag});
+    console.log(this.add.emit({mode: this.flag}));
   }
 
   listOption() {
     console.log('list option clicked');
+    this.print.emit({mode: this.flag});
+    console.log(this.print.emit({mode: this.flag}));
     //this.PrintClicked.emit(data);
   }
 

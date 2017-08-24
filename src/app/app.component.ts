@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 import { EntryConsoleComponent } from './entry-console/entry-console.component';
 
@@ -8,10 +8,11 @@ import { EntryConsoleComponent } from './entry-console/entry-console.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    studentCollection: Array<object>;
-    studentRecord: {studNo: number, studFirstName: string, studLastName: string, studProgram: string, studYear: number};
+  studentCollection: Array<object>;
+  
+  @Input() studentRecord: {studNo: number, studFirstName: string, studLastName: string, studProgram: string, studYear: number};
 
-    messages; 
+  messages;
 
   checkPattern(value: any, pattern: RegExp): boolean {
       if (pattern.test(value))
@@ -20,8 +21,20 @@ export class AppComponent {
          return false;
   } 
 
-  trapthis() {
-     console.log("Emitted event...."); 
+  trapthis(data) {
+     console.log('Emitted event.... '+data); 
+  }
+
+  selectMode(data){
+    console.log(data.mode);
+    if(data.mode === 'add'){
+        this.addStudentEntry();
+    }
+    else { 
+        if(data.mode === 'print'){
+            this.listStudents();
+        }
+    }      
   }
 
   addStudentEntry(): boolean {
@@ -53,7 +66,6 @@ export class AppComponent {
 
   getResetFlagState() {
     //  this.resetFlag = this.studentRecord.resetFlag;
-
     //  return {resetValue: this.resetFlag};
   }
 

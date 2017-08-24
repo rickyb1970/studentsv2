@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ControlpanelComponent } from '../controlpanel/controlpanel.component';
+import { Component, OnInit, Input, Output } from '@angular/core';
+
 
 @Component({
   selector: 'entry-console',
@@ -15,16 +15,21 @@ export class EntryConsoleComponent implements OnInit {
   studLname: string;
   studProg: string;
   studYr: number;
+  studentRecord;
 
-   @Input() studentRecord = {
-                             studNo: this.studNo, 
-                             studFirstName: this.studFname, 
-                             studLastName: this.studLname,
-                             studProgram: this.studProg, 
-                             studYear: this.studYr
-                            };
+  getStudentRecord() {
+  this.studentRecord = {
+        studNo: this.studNo, 
+        studFirstName: this.studFname, 
+        studLastName: this.studLname,
+        studProgram: this.studProg, 
+        studYear: this.studYr
+        };
 
-  resetFlag = false;
+    return this.studentRecord;
+  }
+
+  //resetFlag = false;
 
   constructor() {
 
