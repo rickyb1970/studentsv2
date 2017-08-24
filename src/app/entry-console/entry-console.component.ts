@@ -16,18 +16,29 @@ export class EntryConsoleComponent implements OnInit {
   studProg: string;
   studYr: number;
 
-   @Input() studentRecord = {
-                             studNo: this.studNo, 
-                             studFirstName: this.studFname, 
-                             studLastName: this.studLname,
-                             studProgram: this.studProg, 
-                             studYear: this.studYr
-                            };
+  studentRecord;
 
   resetFlag = false;
 
   constructor() {
 
+  }
+
+  getStudentRecord(){
+     this.studentRecord = {
+      studNo: this.studNo, 
+      studFirstName: this.studFname, 
+      studLastName: this.studLname,
+      studProgram: this.studProg, 
+      studYear: this.studYr
+     };
+     
+     this.studNo = null;
+     this.studFname = null;
+     this.studLname = null;
+     this.studProg = null;
+     this.studYr = null;
+     return this.studentRecord;
   }
 
   ngOnInit() {

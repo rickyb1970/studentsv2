@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-printing',
@@ -7,7 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PrintingComponent implements OnInit {
 
-  @Output() tobePrinted = new EventEmitter<string>();
+  @Input() printing: boolean;
+  @Input() studentCollection: Array<object>;
 
   constructor() { }
 

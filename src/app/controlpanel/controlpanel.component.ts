@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-control-panel',
@@ -12,7 +12,8 @@ export class ControlpanelComponent implements OnInit {
   @Output() PrintClicked = new EventEmitter<any>();
 
   flag;
-  messages = '';
+  
+  @Input() messages: string;
 
   resetFlag;
 
@@ -23,16 +24,16 @@ export class ControlpanelComponent implements OnInit {
 
   }
 
-  addOption(data) {
+  addOption() {
     //console.log('add option clicked');
     this.flag = 'add';
-    this.AddClicked.emit();
-    console.log(this.AddClicked.emit());
+    this.AddClicked.emit({mode: this.flag});
+    //console.log(this.AddClicked.emit({mode: this.flag}));
   }
 
   listOption() {
-    console.log('list option clicked');
-    //this.PrintClicked.emit(data);
+    this.flag = 'print'
+    this.PrintClicked.emit({mode: this.flag});
   }
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { EntryConsoleComponent } from './entry-console/entry-console.component';
 
@@ -8,10 +8,13 @@ import { EntryConsoleComponent } from './entry-console/entry-console.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    studentCollection: Array<object>;
+    studentCollection: Array<object> = [];
+    
     studentRecord: {studNo: number, studFirstName: string, studLastName: string, studProgram: string, studYear: number};
 
     messages; 
+
+    printing: boolean = false;
 
   checkPattern(value: any, pattern: RegExp): boolean {
       if (pattern.test(value))
@@ -20,12 +23,22 @@ export class AppComponent {
          return false;
   } 
 
-  trapthis() {
-     console.log("Emitted event...."); 
+  selectMode(event,dataset?) {
+    console.log(dataset); 
+    if (event.mode === 'add'){
+       this.studentRecord = dataset;
+       this.addStudentEntry();
+    } else if(event.mode === 'print') {
+       this.listStudents();
+       console.log('Printing mode....');
+    }
+       
+       //console.log(this.studentRecord); 
+     
   }
 
   addStudentEntry(): boolean {
-      console.log(this.studentRecord);
+      //console.log('contents of holder: '+this.studentRecord.studNo);
 
       //this.studentEntry.printing;
       const stringPattern = /^[A-z\s]+$/;
@@ -51,13 +64,8 @@ export class AppComponent {
       return true;
   }
 
-  getResetFlagState() {
-    //  this.resetFlag = this.studentRecord.resetFlag;
-
-    //  return {resetValue: this.resetFlag};
-  }
-
-  listStudents(): void {
-          console.log('Listing');
+  listStudents(): boolean {
+          this.printing = true;
+          return this.printing;
   }
 }
